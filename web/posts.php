@@ -1,7 +1,9 @@
 <?php
-static $idCount = 0;
+
+
 	function posts_all() {
-		return	get_one_post();
+		$storage = Storage::getInstance();
+		return	$storage->read_data();
 	}
 
 	function posts_get($id) {
@@ -9,8 +11,10 @@ static $idCount = 0;
 	}
 
 	function posts_new($title, $content) {
-		 data_write(create_string($idCount+1, $title, $content, 'date'));
-		 $idCount = $idCount+1;
+		$storage = Storage::getInstance();
+		date_default_timezone_set('UTC');
+		$date = date('Y h:i:s A');
+		$storage->write_data($storage->create_string(1, $title, $content, $date));
 	}
 
 	function posts_added() {

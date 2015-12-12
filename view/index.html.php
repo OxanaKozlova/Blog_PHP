@@ -3,43 +3,60 @@
     <head>
         <meta charset="utf8">
         <title>First Blog</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     </head>
     <body>
-        <div>
-            <h1>Blog</h1>
-          <!--  <div>
-                <a href="index.php?action=add"> Добавить пост </a>
+          <nav class="navbar navbar-dark bg-inverse">
+            <div class="nav navbar-nav">
+                <a class="nav-item nav-link active" href="#">Blog <span class="sr-only">(current)</span></a>
             </div>
-            -->
-            <div>
+          </nav>
+          <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+              <div class="form">
                 <form method="post" action="index.php?action=add">
-                    <label>
-                        Тема
-                        <input type="text" name="title" value="" class="form-item" autofocus required>
-                    </label>
-                    <label>
-                        Пост
-                        <textarea class="form-item" name="content" required> </textarea>
-                    </label>
-                    <input type="submit" value="Post" class="btn">
-                </form
+                  <div class="form-group">
+                    <input type="text" name="title" value="" class="form-control" placeholder="Title"
+                        aria-describedby="basic-addon1"  autofocus required></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+                  </div>
+                  <input type="submit" value="Post" class="btn btn-primary-outline btn-sm">
+                </form>
+              </div>
             </div>
-            <div>
-                <?php foreach($posts as $p): ?>
-                    <div class="post">
-                        <h3><?=$p['title']?></h3>
-                        <p><?=$p['content']?></p>
-                        <em>Published: <?=$p['date']?></em>
-                        <form>
-                          <input type="submit" value="Delete" class="btn">
-                      </form>
-                    </div>
-                <?php endforeach ?>
+            <div class="col-md-4">
+
             </div>
-            <footer>
-            	<p>First Blog<br>Copyright &copy; 2015</p>
-            </footer>
-        </div>
+
+          </div>
+          <?php foreach($posts as $p): ?>
+            <div class="row">
+              <div class="col-md-4">
+
+              </div>
+              <div class="col-md-4">
+                <div class="container">
+                  <div class="post">
+                    <h3><?=$p['title']?></h3>
+                    <h6><em>Published: <?=$p['date']?></em></h6>
+                    <p><?=$p['content']?></p>
+                    <form>
+                      <input type="submit" value="Delete" class="btn btn-primary-outline btn-sm">
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+
+              </div>
+
+            </div>
+          <?php endforeach ?>
     </body>
 </html>
