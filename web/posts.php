@@ -12,7 +12,7 @@
 		$storage = Storage::getInstance();
 		date_default_timezone_set('UTC');
 		$date = date('Y h:i:s A');
-		$storage->writeData(1, $title, $content, $date);
+		$storage->writeData($storage->setID(), $title, $content, $date);
 	}
 
 	function posts_added() {
@@ -20,7 +20,7 @@
 
 	function posts_edit($id, $title, $date, $content) {
 	}
-	
+
 	function posts_delete($id) {
 	}
 ?>

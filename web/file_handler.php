@@ -32,4 +32,17 @@ class FileHandler implements Handler {
         }
         return $posts_map;
     }
+    public function set_id(){
+      $lastPost =  count($this->read_data()) - 1;
+      if(is_null($posts_map[$lastPost]['id'])){
+        $next_id = 1;
+      }
+      else
+        $next_id = 1+ $posts_map[$lastPost]['id'];
+      return $next_id;
+    }
+
+    
+
+
 }

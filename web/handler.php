@@ -3,4 +3,5 @@ interface Handler
 {
     public function read_data();
     public function write_data($id, $title,  $content,$data);
+    public function set_id();
 }

@@ -7,6 +7,7 @@ require_once("json_handler.php");
 
 $storage = Storage::getInstance();
 $storage->setHandler(new FileHandler());
+$storage->setID();
 $post = posts_get($_GET['id']);
 $posts = posts_all();
 

@@ -26,4 +26,7 @@ class Storage
 		public function writeData($id, $title,  $content,$data) {
 			$this->handler->write_data($id, $title,  $content,$data);
 		}
+    public function setID(){
+      return $this->handler->set_id();
+    }
 }
