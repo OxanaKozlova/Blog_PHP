@@ -1,7 +1,8 @@
 <?php
 class FileHandler implements Handler {
-  public	function write_data($post) {
+  public	function write_data($id, $title,  $content,$data) {
       $file = '../storage/posts.txt';
+      $post = $this->create_string($id, $title,  $content,$data);
       file_put_contents($file, $post, FILE_APPEND | LOCK_EX);
     }
     public function create_string($id, $title, $content, $date){
@@ -27,10 +28,8 @@ class FileHandler implements Handler {
           if($title!=""){
             $posts_map[$i] =["id"=> $id, "title"=>$title, "content"=> $content, "date"=> $date];
             $i++;
-        }
+          }
         }
         return $posts_map;
-      }
-
-
+    }
 }
