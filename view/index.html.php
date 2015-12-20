@@ -35,7 +35,9 @@
             </div>
 
           </div>
-          <?php foreach($posts as $p): ?>
+          <?php
+          $posts = Storage:: getInstance()->read_data();
+           foreach($posts as $p): ?>
             <div class="row">
               <div class="col-md-3">
 
@@ -43,11 +45,14 @@
               <div class="col-md-7">
                 <div class="container">
                   <div class="post">
-                    <h3><?=$p['title']?></h3>
-                    <h6><em>Published: <?=$p['date']?></em></h6>
-                    <p><?=$p['content']?></p>
+                    <h3><?=$p->get_title()?></h3>
+                    <h6><em>Published: <?=$p->get_date()?></em></h6>
+                    <p><?=$p->get_content()?></p>
                     <form>
-                      <input type="submit" value="Delete" class="btn btn-primary-outline btn-sm">
+
+                      <a href="index.php?action=delete&id=<?php echo $p->get_id(); ?>">
+                                <input type="button" value="delete" class="btn btn-primary-outline btn-sm">
+                            </a>
                     </form>
                   </div>
                 </div>

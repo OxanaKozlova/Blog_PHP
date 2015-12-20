@@ -14,19 +14,21 @@ class Storage
 			}
 			return self::$instance;
 		}
+    public function read_data(){
+      return $this->handler->get_all_posts();
+    }
 
 		public function setHandler($handler) {
 			$this->handler = $handler;
 		}
 
-		public function readData() {
-			return $this->handler->read_data();
+
+
+		public function write_data($title, $content) {
+			$this->handler->add_new_post($title,  $content);
 		}
 
-		public function writeData($id, $title,  $content,$data) {
-			$this->handler->write_data($id, $title,  $content,$data);
-		}
-    public function setID(){
-      return $this->handler->set_id();
+    public function delete($id){
+      $this->handler->delete_post($id);
     }
 }

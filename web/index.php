@@ -1,30 +1,28 @@
 <?php
-require_once("posts.php");
-require_once("storage.php");
-require_once("handler.php");
-require_once("file_handler.php");
-require_once("json_handler.php");
+require_once("../include/model/post.php");
+require_once("../include/storage/storage.php");
+require_once("../include/storage/handler.php");
+require_once("../include/storage/file_handler.php");
+require_once("../include/storage/json_handler.php");
 
-$storage = Storage::getInstance();
-$storage->setHandler(new FileHandler());
-$storage->setID();
-$post = posts_get($_GET['id']);
-$posts = posts_all();
+Storage::getInstance()->setHandler(new FileHandler());
 
 if(isset($_GET['action']))
 	$action = $_GET['action'];
 else
 	$action = "";
+
 if($action == "add") {
-	if(!empty($_POST)) {
-		$posts = posts_new($_POST['title'], $_POST['content']);
-		$posts = posts_all();
+	if(!empty($_POST))
+		Storage::getInstance()->write_data($_POST['title'], $_POST['content']);
 	}
-	require_once("../view/index.html.php");
+
+if($action == "delete"){
+	if (isset($_GET['id']))
+		Storage::getInstance()->delete($_GET['id']);
 }
-else {
-	require_once("../view/index.html.php");
-		$posts = posts_all();
-}
+
+Storage::getInstance()->read_data();
+require_once("../view/index.html.php");
 
 ?>
