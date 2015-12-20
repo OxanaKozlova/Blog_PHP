@@ -1,5 +1,5 @@
 <?php
-class Post{
+class Post  implements JsonSerializable{
   private $id;
   private $content;
   private $date;
@@ -15,6 +15,15 @@ class Post{
   public function toString(){
     return $this->id.";".$this->title.";".$this->content.";".$this->date."~";
   }
+
+  function jsonSerialize()
+    {
+        $data['id'] = $this->id;
+        $data['title'] = $this->title;
+        $data['content'] = $this->content;
+        $data['date'] = $this->date;
+        return $data;
+    }
 
   public function get_id(){
     return $this->id;

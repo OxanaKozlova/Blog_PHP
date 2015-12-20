@@ -5,7 +5,7 @@ require_once("../include/storage/handler.php");
 require_once("../include/storage/file_handler.php");
 require_once("../include/storage/json_handler.php");
 
-Storage::getInstance()->setHandler(new FileHandler());
+Storage::getInstance()->setHandler(new JSonHandler());
 
 if(isset($_GET['action']))
 	$action = $_GET['action'];
