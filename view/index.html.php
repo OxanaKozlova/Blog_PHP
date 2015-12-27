@@ -45,9 +45,9 @@
               <div class="col-md-7">
                 <div class="container">
                   <div class="post">
-                    <h3><?=$p->get_title()?></h3>
+                    <h3><?=nl2br($p->get_title())?></h3>
                     <h6><em>Published: <?=$p->get_date()?></em></h6>
-                    <p><?=$p->get_content()?></p>
+                    <p><?=nl2br($p->get_content())?></p>
                     <form>
 
                       <a href="index.php?action=delete&id=<?php echo $p->get_id(); ?>">

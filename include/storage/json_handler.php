@@ -42,7 +42,6 @@ class JSonHandler implements Handler {
               $json[$i]['content'],
               $json[$i]['date']);
       }
-
       $revers_posts = array_reverse($posts);
       return $revers_posts;
   }
