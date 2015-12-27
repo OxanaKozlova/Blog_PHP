@@ -13,7 +13,8 @@ class JSonHandler implements Handler {
   }
 
   public function add_new_post($title, $content){
-    $posts = $this->get_all_posts();
+    $posts_revers = $this->get_all_posts();
+      $posts = array_reverse($posts_revers);
       if (count($posts) > 0) {
           $id = $posts[count($posts)-1]->get_id() + 1;
       } else $id = 0;
@@ -41,6 +42,8 @@ class JSonHandler implements Handler {
               $json[$i]['content'],
               $json[$i]['date']);
       }
-      return $posts;
+
+      $revers_posts = array_reverse($posts);
+      return $revers_posts;
   }
 }

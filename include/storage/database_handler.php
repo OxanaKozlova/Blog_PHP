@@ -18,7 +18,7 @@ class DatabaseHandler implements Handler{
             }
         }
         mysqli_free_result($result);
-        return $posts;
+        return array_reverse($posts);
     }
 
     public function add_new_post($title, $content){

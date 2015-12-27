@@ -2,7 +2,7 @@
 class FileHandler implements Handler {
   private $file_name = '../storage/posts.txt';
 
-  public	function write_data($id, $title, $content,$data) {
+  public function write_data($id, $title, $content,$data) {
       $post = $this->create_string($id, $title,  $content,$data);
       file_put_contents($this->file_name, $post, FILE_APPEND | LOCK_EX);
     }
@@ -10,7 +10,8 @@ class FileHandler implements Handler {
     public function get_all_posts(){
       $data = file_get_contents($this->file_name);
       $post_array = explode("~", $data);
-      foreach($post_array as $p){
+      $revers_posts = array_reverse($post_array);
+      foreach($revers_posts as $p){
         list($id, $title, $content, $date) = explode(";", $p);
         if($title!=""){
           $posts[] = new Post($id, $title, $content, $date);
@@ -20,7 +21,8 @@ class FileHandler implements Handler {
     }
 
     public function add_new_post($title, $content){
-      $posts = $this->get_all_posts();
+      $posts_revers = $this->get_all_posts();
+      $posts = array_reverse($posts_revers);
       if($posts != null){
         $id = end($posts)->get_id()+1;
       }
@@ -31,7 +33,8 @@ class FileHandler implements Handler {
     }
 
     public function delete_post($id){
-      $posts = $this->get_all_posts();
+      $posts_revers = $this->get_all_posts();
+      $posts = array_reverse($posts_revers);
       foreach($posts as $post){
         if($post->get_id() == $id){
            $delete_string = $post->toString();
