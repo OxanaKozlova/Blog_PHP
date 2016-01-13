@@ -1,14 +1,9 @@
 <?php
 class DatabaseHandler implements Handler{
-    private $host = 'localhost';
-    private  $user_name = 'root';
-    private  $password = '1111';
-    private $db_name = 'PHP_Blog';
 
     public function get_all_posts(){
-
-        $result = $this->create_query($this->host, $this->user_name,
-            $this->password, $this->db_name,"SELECT * FROM posts" );
+        $result = $this->create_query(Config::$db['host'], Config::$db['user_name'],
+            Config::$db['password'], Config::$db['db_name'],"SELECT * FROM posts" );
         if ($result) {
             while ($post = mysqli_fetch_array($result)) {
                 $posts[] = new Post((int)$post['post_id'],
@@ -22,7 +17,8 @@ class DatabaseHandler implements Handler{
     }
 
     public function add_new_post($title, $content){
-        $this->create_query($this->host, $this->user_name, $this->password, $this->db_name,
+        $this->create_query(Config::$db['host'], Config::$db['user_name'],
+            Config::$db['password'], Config::$db['db_name'],
             "INSERT INTO posts( title, content) VALUES ('$title','$content')" );
     }
 
@@ -30,12 +26,12 @@ class DatabaseHandler implements Handler{
        $posts = $this->get_all_posts();
        foreach($posts as $post){
            if($post->get_id()==$id){
-               $this->create_query($this->host, $this->user_name,
-                   $this->password, $this->db_name, "DELETE FROM posts WHERE post_id='$id'");
+               $this->create_query(Config::$db['host'], Config::$db['user_name'],
+                   Config::$db['password'], Config::$db['db_name'], "DELETE FROM posts WHERE post_id='$id'");
                return;
-            }
-        }
-   }
+           }
+       }
+    }
 
     private function create_query($host, $user_name, $password, $db_name, $query){
         $mysqli = new mysqli($host, $user_name, $password, $db_name);
@@ -46,6 +42,4 @@ class DatabaseHandler implements Handler{
         mysqli_close($mysqli);
         return $result;
     }
-
-
 }

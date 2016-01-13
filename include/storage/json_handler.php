@@ -1,15 +1,15 @@
 <?php
 class JSonHandler implements Handler {
-  private $file_name = '../storage/posts.json';
+    static $i = 0;
 
   private function read_json(){
-    $data = file_get_contents($this->file_name);
+    $data = file_get_contents(Config::$path['file_name_json']);
     return json_decode($data, TRUE);
   }
 
   private function write_json($json){
     $new_json = json_encode($json);
-    file_put_contents($this->file_name, $new_json);
+    file_put_contents(Config::$path['file_name_json'], $new_json);
   }
 
   public function add_new_post($title, $content){
@@ -43,6 +43,8 @@ class JSonHandler implements Handler {
               $json[$i]['date']);
       }
       $revers_posts = array_reverse($posts);
+      $this->i++;
+      echo $this->i;
       return $revers_posts;
   }
 }

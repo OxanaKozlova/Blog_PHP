@@ -1,14 +1,13 @@
 <?php
 class FileHandler implements Handler {
-  private $file_name = '../storage/posts.txt';
 
   public function write_data($id, $title, $content,$data) {
       $post = $this->create_string($id, $title,  $content,$data);
-      file_put_contents($this->file_name, $post, FILE_APPEND | LOCK_EX);
+      file_put_contents(Config::$path['file_name_txt'], $post, FILE_APPEND | LOCK_EX);
     }
 
     public function get_all_posts(){
-      $data = file_get_contents($this->file_name);
+      $data = file_get_contents(Config::$path['file_name_txt']);
       $post_array = explode("~", $data);
       $revers_posts = array_reverse($post_array);
       foreach($revers_posts as $p){
@@ -29,7 +28,7 @@ class FileHandler implements Handler {
       else $id = 0;
       $date = date('Y h:i:s A');
       $post = new Post($id, $title, $content, $date);
-      file_put_contents($this->file_name, $post->toString(), FILE_APPEND | LOCK_EX);
+      file_put_contents(Config::$path['file_name_txt'], (String)$post, FILE_APPEND | LOCK_EX);
     }
 
     public function delete_post($id){
@@ -37,13 +36,13 @@ class FileHandler implements Handler {
       $posts = array_reverse($posts_revers);
       foreach($posts as $post){
         if($post->get_id() == $id){
-           $delete_string = $post->toString();
+           $delete_string = (String)$post;
            break;
         }
       }
-      $data = file_get_contents($this->file_name);
+      $data = file_get_contents(Config::$path['file_name_txt']);
       $new_str = str_replace($delete_string, "",$data );
       if($post != null)
-        file_put_contents($this->file_name, $new_str);
+        file_put_contents(Config::$path['file_name_txt'], $new_str);
     }
 }

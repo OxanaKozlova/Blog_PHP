@@ -12,7 +12,7 @@ class Post  implements JsonSerializable{
     $this->date = $date;
   }
 
-  public function toString(){
+  public function __toString(){
     return $this->id.";".$this->title.";".$this->content.";".$this->date."~";
   }
 
