@@ -1,5 +1,5 @@
 <?php
-class FileHandler implements Handler {
+class Storage_File implements Storage_Handler {
 
   public function write_data($id, $title, $content,$data) {
       $post = $this->create_string($id, $title,  $content,$data);

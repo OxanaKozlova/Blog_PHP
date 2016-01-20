@@ -1,5 +1,5 @@
 <?php
-class DatabaseHandler implements Handler{
+class Storage_Database implements Storage_Handler{
 
     public function get_all_posts(){
         $result = $this->create_query(Config::$db['host'], Config::$db['user_name'],

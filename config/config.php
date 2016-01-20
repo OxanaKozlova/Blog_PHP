@@ -10,6 +10,6 @@ class Config{
         'file_name_txt'  => '../storage/posts.txt',
         'file_name_json'    => '../storage/posts.json',
     ];
-    static $handler = 'FileHandler';
+    static $handler = 'Storage_File';
 
 }

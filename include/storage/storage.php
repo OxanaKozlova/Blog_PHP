@@ -21,19 +21,8 @@ class Storage
     }
 
 	public function setHandler() {
-		switch(Config::$handler){
-			case 'FileHandler':
-				$this->handler = new FileHandler();
-				break;
-			case 'JSonHandler':
-				$this->handler = new JSonHandler();
-				break;
-			case 'DatabaseHandler':
-				$this->handler = new DatabaseHandler();
-				break;
-			default:
-				$this->handler = new DatabaseHandler();
-		}
+    $classname = Config::$handler;
+    $this->handler = new $classname;
 	}
 
 	public function write_data($title, $content) {

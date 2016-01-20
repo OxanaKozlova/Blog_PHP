@@ -1,5 +1,5 @@
 <?php
-class JSonHandler implements Handler {
+class Storage_Json implements Storage_Handler {
     static $i = 0;
 
   private function read_json(){
