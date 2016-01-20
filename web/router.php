@@ -13,10 +13,10 @@ class Route{
 
     $controller = new $controller_name;
 
-    $action  = $action_name;
-    if(method_exists($controller, $action)){
-        $controller->$action();
+    if(method_exists($controller,   $action_name)){
+        $controller->$action_name();
         require_once("../view/index.html.php");
+
     }
   }
 }
